@@ -35,3 +35,8 @@ h1{
     text-decoration: none;
     color: #000;
 }
+
+.colors {
+    width: 200px;
+    height: 4rem;
+}
