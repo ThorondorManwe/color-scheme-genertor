@@ -1,0 +1,1 @@
+A solo project from the Front End Path at scrimba.com, a color scheme generator that takes colors from an API and gives the user the oportunity to elect the color with HEX value.
