@@ -22,11 +22,19 @@ color = color.substring(1);
 function callApi(color, mode = "monochrome") {
     fetch(`https://www.thecolorapi.com/scheme?hex=${color}&mode=${mode}`)
         .then(response => response.json())
-        .then(data => console.log(data))
+        .then(data => {
+            const array = data.colors;
+
+            const mappedArray = array.map(function(color) {
+                return color.hex.value;
+            });
+
+            console.log(mappedArray);
+        })
 }
 
 
 activate.addEventListener('click', function() {
-    const selectValue = select.options[select.selectedIndex].value;
-    callApi(color, selectValue);
+    const selectMode = select.options[select.selectedIndex].value;
+    callApi(color, selectMode);
 });
