@@ -68,13 +68,13 @@ function callApi(color, mode = "monochrome") {
             const mappedArray = array.map(function(color) {
                 const hexColor = color.hex.value;
                 html += `
-                    <div>
+                    <div id="mainColors">
                         <div class="colors" style="background-color: ${hexColor};">
                             
                         </div>
 
                         <div class="colorsPara">
-                            <p>${hexColor}</p>
+                            <p class="hexPara">${hexColor}</p>
                         </div>
                     </div>
                 `;
@@ -99,3 +99,5 @@ activate.addEventListener('click', function() {
     const selectMode = select.options[select.selectedIndex].value;
     callApi(color, selectMode);
 });
+
+callApi(color, "monochrome");
