@@ -18,15 +18,16 @@ color = color.substring(1);
 }) */
 
 function ColorToHex(color) {
-    const hexadecimal = color.toString(16);
-    return hexadecimal.length == 1 ? "0" + hexadecimal : hexadecimal;
+    const number = Number(color);
+    const hexadecimal = number.toString(16);
+    return hexadecimal.length === 1 ? "0" + hexadecimal : hexadecimal;
 }
 
 function ConvertRGBtoHex(red, green, blue) {
     return "#" + ColorToHex(red) + ColorToHex(green) + ColorToHex(blue);
 }
 
-// TODO Otra función que tome el array de callAPI y use sus valores para colorear los divs
+
 function recorreDivs(divs) {
     divs.forEach((div) => {
         div.addEventListener('click', function(e) {
@@ -39,7 +40,19 @@ function recorreDivs(divs) {
             const blue = matches[2];
 
             const hexColor = ConvertRGBtoHex(red, green, blue);
-            console.log(hexColor);
+            navigator.clipboard.writeText(hexColor);
+            window.alert("Hex Value on clipboard")
+        });
+    });
+}
+
+
+function recorrePara(p) {
+    p.forEach((p) => {
+        p.addEventListener('click', function(e) {
+            const paragraphHex = e.currentTarget.innerText;
+            navigator.clipboard.writeText(paragraphHex);
+            window.alert("Hex Value on clipboard")
         });
     });
 }
@@ -60,7 +73,7 @@ function callApi(color, mode = "monochrome") {
                             
                         </div>
 
-                        <div>
+                        <div class="colorsPara">
                             <p>${hexColor}</p>
                         </div>
                     </div>
@@ -69,8 +82,10 @@ function callApi(color, mode = "monochrome") {
             document.getElementById("color-container").innerHTML = html;
 
             const divs = document.querySelectorAll('.colors');
+            const colorsPara = document.querySelectorAll('.colorsPara');
+
             recorreDivs(divs);
-            console.log(divs);
+            recorrePara(colorsPara);
 
             /* console.log(mappedArray); */
             console.log(array);
